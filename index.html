@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Slider -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Home</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+      :root {
+        --primary: #18192b;
+        --secondary: #1f2034;
+        --complementary: #6869e4;
+        --complementary2: #eecd56;
+        --complementary3: #1dfac7;
+        --light-color: #6d6f90;
+        --white: #ffff;
+        --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .tittle {
+        color: var(--white);
+        font-weight: normal;
+      }
+
+      body {
+        background: var(--primary);
+      }
+
+      section,
+      footer {
+        padding: 1rem 4%;
+      }
+
+      header {
+        padding: 2rem 4%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--light-color);
+        font-size: 2rem;
+        height: 34px;
+      }
+
+      header #menu {
+        color: var(--complementary);
+      }
+
+      header .profile {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      header .profile #notifications {
+        font-size: 1.5rem;
+      }
+
+      header .profile img {
+        height: 34px;
+        width: 34px;
+        border-radius: 50%;
+      }
+
+      header .navbar a {
+        font-size: 1.7rem;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1.5rem;
+        color: var(--light-color);
+      }
+
+      header .navbar a.active,
+      header .navbar a:hover {
+        color: var(--white);
+        background: var(--complementary);
+      }
+
+      header .navbar {
+        display: none;
+      }
+
+      #hero .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--secondary);
+        color: var(--light-color);
+        padding: 1rem;
+        border-radius: 8px;
+      }
+
+      #hero .day-info {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+      #hero .day-info #sun-icon {
+        color: var(--complementary2);
+        font-size: 1.5rem;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+        margin-top: 1rem;
+      }
+
+      .swiper-slide {
+        font-size: 18px;
+        background: var(--secondary);
+        color: var(--light-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .autoplay-progress {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        z-index: 10;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: var(--complementary);
+      }
+
+      .autoplay-progress svg {
+        --progress: 0;
+        position: absolute;
+        left: 0;
+        top: 0px;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        stroke-width: 4px;
+        stroke: var(--complementary);
+        fill: none;
+        stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+        stroke-dasharray: 125.6;
+        transform: rotate(-90deg);
+      }
+
+      .swiper-slide #now-temp {
+        margin: 1rem 0;
+        background-image: url('../images/Temp.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 320px;
+        text-align: center;
+        position: relative;
+      }
+
+      .temp-value {
+        padding-top: 120px;
+      }
+
+      .temp-value h1 {
+        color: var(--white);
+        font-size: 44px;
+      }
+
+      .temp-value span {
+        color: var(--complementary3);
+      }
+
+      .better-temp {
+        padding-top: 70px;
+      }
+
+      .better-temp p {
+        color: var(--white);
+        font-weight: 200;
+      }
+
+      .better-temp span {
+        color: var(--complementary3);
+      }
+
+      .dates {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      #quick-access .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 2rem;
+        margin-top: 1rem;
+      }
+
+      #quick-access .sensor {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        background: var(--secondary);
+        width: 550px;
+        border-radius: 8px;
+        padding: 3rem;
+      }
+
+      #quick-access .sensor .sensor-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .sensor .sensor-info .sensor-name {
+        color: var(--light-color);
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+
+      .sensor-value {
+        font-size: 2.5rem;
+        color: var(--white);
+      }
+
+      .value-unit {
+        font-size: 1rem;
+        font-weight: lighter;
+      }
+
+      .sensor-icon {
+        color: var(--complementary) !important;
+        font-size: 3rem !important;
+      }
+
+      .mg-15 {
+        margin-left: -15px;
+      }
+
+      #footer .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      #footer #file,
+      #footer #calendar {
+        color: var(--light-color);
+        font-size: 32px;
+        transition: 0.5s ease-in;
+        cursor: pointer;
+      }
+
+      #footer #file:hover,
+      #footer #calendar:hover {
+        color: var(--complementary);
+      }
+
+      #footer #actions {
+        font-size: 54px;
+        color: var(--complementary);
+        transition: 0.5s ease-in;
+        cursor: pointer;
+      }
+
+      #footer #actions:hover {
+        color: var(--complementary3);
+      }
+
+      @media (max-width: 768px) {
+        .day-info,
+        .date-info {
+          font-size: 12px;
+        }
+        .tittle {
+          font-size: 16px;
+        }
+        .swiper-slide #now-temp {
+          height: 100px;
+          background-size: 140px;
+        }
+
+        .temp-value {
+          padding-top: 24px;
+        }
+
+        .temp-value h1 {
+          font-size: 14px;
+        }
+
+        .temp-value span {
+          font-size: 10px;
+        }
+
+        .better-temp {
+          padding-top: 30px;
+        }
+
+        .better-temp p {
+          font-size: 10px;
+        }
+
+        .better-temp span {
+          font-size: 10px;
+        }
+
+        .sensor {
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <ion-icon id="menu" name="menu-outline"></ion-icon>
+      <div class="profile">
+        <ion-icon id="notifications" name="notifications-outline"></ion-icon>
+        <!-- <img
+          src="
+            https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          alt="profile-pic"
+        /> -->
+      </div>
+    </header>
+    <body>
+      <!-- Hero -->
+      <section id="hero">
+        <div class="container">
+          <div class="day-info">
+            <ion-icon id="sun-icon" name="sunny-outline"></ion-icon>
+            <span>30°C - Ilha de Itamaracá</span>
+          </div>
+          <div class="date-info">
+            <span>13 Jan 2023</span>
+          </div>
+        </div>
+      </section>
+      <!-- End Hero -->
+      <!-- Banner -->
+      <section class="banner" id="banner">
+        <h1 class="tittle">Atualizações:</h1>
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <span> Temperatura </span>
+              <img id="temp-graph" src="images/Graph.svg" alt="" />
+              <div class="dates">
+                <span>Jan</span>
+                <span>Mar</span>
+                <span>May</span>
+                <span>Jul</span>
+                <span>Sep</span>
+                <span>Nov</span>
+                <span>Dec</span>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div id="now-temp">
+                <div class="temp-value">
+                  <h1>27°C</h1>
+                  <span>Normal</span>
+                </div>
+                <div class="better-temp">
+                  <p>Temperatura recomendada</p>
+                  <span>28°C</span>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+            <div class="swiper-slide">Slide 9</div> -->
+          </div>
+          <!-- <div class="swiper-pagination"></div> -->
+          <div class="autoplay-progress">
+            <svg viewBox="0 0 48 48">
+              <circle cx="24" cy="24" r="20"></circle>
+            </svg>
+            <span></span>
+          </div>
+        </div>
+      </section>
+      <!-- End Banner -->
+      <!-- Quick Access -->
+      <section id="quick-access">
+        <h1 class="tittle">Sensores:</h1>
+        <div class="container">
+          <div class="sensor" id="temp-sensor">
+            <div class="sensor-info">
+              <ion-icon
+                class="sensor-icon mg-15"
+                name="thermometer-outline"
+              ></ion-icon>
+              <span class="sensor-name">Temperatura</span>
+            </div>
+            <div class="sensorData">
+              <h1 class="sensor-value" id="temp-value">23</h1>
+              <span class="value-unit">°C</span>
+            </div>
+          </div>
+          <div class="sensor" id="ph-sensor">
+            <div class="sensor-info">
+              <ion-icon
+                class="sensor-icon mg-15"
+                name="water-outline"
+              ></ion-icon>
+              <span class="sensor-name">PH</span>
+            </div>
+            <div class="sensorData">
+              <h1 class="sensor-value" id="ph-value">7</h1>
+              <span class="value-unit">Normal</span>
+            </div>
+          </div>
+          <div class="sensor" id="turb-sensor">
+            <div class="sensor-info">
+              <ion-icon class="sensor-icon" name="pulse-outline"></ion-icon>
+              <span class="sensor-name">Turbidez</span>
+            </div>
+            <div class="sensorData">
+              <h1 class="sensor-value" id="turb-value">0.5</h1>
+              <span class="value-unit">NTU</span>
+            </div>
+          </div>
+          <div class="sensor" id="cond-sensor">
+            <div class="sensor-info">
+              <ion-icon
+                class="sensor-icon mg-15"
+                name="flash-outline"
+              ></ion-icon>
+              <span class="sensor-name">Condutividade</span>
+            </div>
+            <div class="sensorData">
+              <h1 class="sensor-value" id="cond-value">1.000</h1>
+              <span class="value-unit">mg/L</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Quick Access -->
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="container">
+          <ion-icon id="file" name="folder-outline"></ion-icon>
+          <ion-icon id="actions" name="chevron-up-circle-outline"></ion-icon>
+          <ion-icon id="calendar" name="calendar-clear-outline"></ion-icon>
+        </div>
+      </footer>
+      <!-- End Footer -->
+    </body>
+    <!-- JS -->
+    <script src="js/app.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <!-- Slidder -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+      const progressCircle = document.querySelector('.autoplay-progress svg');
+      const progressContent = document.querySelector('.autoplay-progress span');
+      var swiper = new Swiper('.mySwiper', {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        on: {
+          autoplayTimeLeft(s, time, progress) {
+            progressCircle.style.setProperty('--progress', 1 - progress);
+            progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
